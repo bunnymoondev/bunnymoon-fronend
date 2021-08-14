@@ -18,7 +18,7 @@ const tokens = {
       56: '0xDB9c74BafAF88d477eA5304136049eaef763813B',
       97: '',
     },
-    decimals: 9,
+    decimals: 18,
     projectLink: 'https://www.bunnymoon.info/',
   },
   btcb: {
