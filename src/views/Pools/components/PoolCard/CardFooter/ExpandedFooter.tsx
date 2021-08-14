@@ -72,11 +72,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
             <>
               <Balance
                 fontSize="14px"
-                value={
-                  isAutoVault
-                    ? getBalanceNumber(totalCakeInVault, stakingToken.decimals)
-                    : getBalanceNumber(totalStaked, stakingToken.decimals)
-                }
+                value={getBalanceNumber(totalStaked, stakingToken.decimals)}
               />
               <Text ml="4px" fontSize="14px">
                 {stakingToken.symbol}
@@ -123,7 +119,12 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
       )}
       <Flex mb="2px" justifyContent="flex-end">
         <LinkExternal bold={false} small href={earningToken.projectLink}>
-          {t('View Project Site')}
+          {t('View Earn Token Project Site')}
+        </LinkExternal>
+      </Flex>
+      <Flex mb="2px" justifyContent="flex-end">
+        <LinkExternal bold={false} small href={stakingToken.projectLink}>
+          {t('View Stake Token Project Site')}
         </LinkExternal>
       </Flex>
       {poolContractAddress && (

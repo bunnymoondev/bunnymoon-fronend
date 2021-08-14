@@ -46,7 +46,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     getBalanceNumber(stakedBalance.multipliedBy(stakingTokenPrice), stakingToken.decimals),
   )
 
-  const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
+  const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal token={stakingToken} />)
 
   const [onPresentStake] = useModal(
     <StakeModal stakingMax={stakingMax} isBnbPool={isBnbPool} pool={pool} stakingTokenPrice={stakingTokenPrice} />,

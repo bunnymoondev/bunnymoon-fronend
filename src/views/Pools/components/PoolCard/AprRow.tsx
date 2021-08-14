@@ -4,7 +4,8 @@ import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
-import { usePriceCakeBusd } from 'state/hooks'
+import { useGetApiPrice } from 'state/hooks'
+import { getAddress } from 'utils/addressHelpers'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { Pool } from 'state/types'
@@ -33,8 +34,7 @@ const AprRow: React.FC<AprRowProps> = ({
     : t('This pool’s rewards aren’t compounded automatically, so we show APR')
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-end' })
-  // const earningTokenPrice = useGetApiPrice(earningToken.address ? getAddress(earningToken.address) : '')
-  const earningTokenPrice = usePriceCakeBusd().toNumber()
+  const earningTokenPrice = useGetApiPrice(earningToken.address ? getAddress(earningToken.address) : '')
   const apr = getPoolApr(
     stakingTokenPrice,
     earningTokenPrice,

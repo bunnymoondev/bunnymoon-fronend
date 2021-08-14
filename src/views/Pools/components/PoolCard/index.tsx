@@ -4,8 +4,9 @@ import { CardBody, Flex, Text, CardRibbon } from '@bunnymoon-libs/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useTranslation } from 'contexts/Localization'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { usePriceCakeBusd } from 'state/hooks'
+import { useGetApiPrice } from 'state/hooks'
 import { Pool } from 'state/types'
+import { getAddress } from 'utils/addressHelpers'
 import AprRow from './AprRow'
 import StyledCard from './StyledCard'
 import CardFooter from './CardFooter'
@@ -17,7 +18,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
-  const stakingTokenPrice = usePriceCakeBusd().toNumber()
+  const stakingTokenPrice = useGetApiPrice(stakingToken.address ? getAddress(stakingToken.address) : '')
   const depositFee = pool.depositFeeBP  || 0
   return (
     <StyledCard
@@ -32,14 +33,6 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
       />
       <CardBody>
         <AprRow pool={pool} stakingTokenPrice={stakingTokenPrice} />
-        <Flex justifyContent="space-between">
-          <Text>{t('Deposit Fee')}:</Text>
-          <Text bold>{depositFee}%</Text>
-        </Flex>
-        <Flex justifyContent="space-between">
-          <Text>{t('Harvest Lockup')}:</Text>
-          <Text bold>{pool.harvestInterval} Hour(s)</Text>
-        </Flex>
         <Flex mt="24px" flexDirection="column">
           {account ? (
             <CardActions pool={pool} stakedBalance={stakedBalance} stakingTokenPrice={stakingTokenPrice} />

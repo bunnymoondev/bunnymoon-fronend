@@ -75,7 +75,6 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
     pendingReward: pendingRewards[pool.sousId],
     canHarvest: canHarvests[pool.sousId]
   }))
-  
   dispatch(setPoolsUserData(userData))
 }
 

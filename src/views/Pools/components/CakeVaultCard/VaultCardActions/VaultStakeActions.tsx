@@ -34,7 +34,7 @@ const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
 }) => {
   const { stakingToken } = pool
   const { t } = useTranslation()
-  const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
+  const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal token={stakingToken} />)
   const [onPresentStake] = useModal(
     <VaultStakeModal
       stakingMax={stakingTokenBalance}

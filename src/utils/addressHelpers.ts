@@ -62,3 +62,6 @@ export const getReferralsAddress = () => {
 export const getCakeMasterChefAddress = () => {
   return getAddress(addresses.cakeMasterChef)
 }
+export const getRocketAddress = () => {
+  return getAddress(tokens.rocket.address)
+}

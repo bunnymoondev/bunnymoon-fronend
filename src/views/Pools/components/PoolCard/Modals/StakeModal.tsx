@@ -8,8 +8,8 @@ import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import useStake from 'hooks/useStake'
-import useUnstake from 'hooks/useUnstake'
+import { useSousStake } from 'hooks/useStake'
+import { useSousUnstake } from 'hooks/useUnstake'
 import PercentageButton from './PercentageButton'
 
 
@@ -27,6 +27,7 @@ const StyledLink = styled(Link)`
 `
 
 const StakeModal: React.FC<StakeModalProps> = ({
+  isBnbPool,
   pool,
   stakingMax,
   stakingTokenPrice,
@@ -37,8 +38,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const { t } = useTranslation()
   const { theme } = useTheme()
 
-  const { onStake } = useStake(sousId)
-  const { onUnstake } = useUnstake(sousId)
+  const { onStake } = useSousStake(sousId, isBnbPool)
+  const { onUnstake } = useSousUnstake(sousId, pool.enableEmergencyWithdraw)
   const { toastSuccess, toastError } = useToast()
 
   const [pendingTx, setPendingTx] = useState(false)
@@ -68,7 +69,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     if (isRemovingStake) {
       // unstaking
       try {
-        await onUnstake(stakeAmount)
+        await onUnstake(stakeAmount, stakingToken.decimals)
         toastSuccess(
           `${t('Unstaked')}!`,
           t(`Your ${earningToken.symbol} earnings have also been harvested to your wallet!`),
@@ -82,7 +83,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     } else {
       try {
         // staking
-        await onStake(stakeAmount)
+        await onStake(stakeAmount, stakingToken.decimals)
         toastSuccess(`${t('Staked')}!`, t(`Your ${stakingToken.symbol} funds have been staked in the pool!`))
         setPendingTx(false)
         onDismiss()
@@ -102,7 +103,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     >
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
-        <Flex alignItems="center" minWidth="70px">
+        <Flex alignItems="center" minWidth="130px">
           <Image src={`/images/tokens/${stakingToken.symbol}.png`} width={24} height={24} alt={stakingToken.symbol} />
           <Text ml="4px" bold>
             {stakingToken.symbol}
@@ -142,7 +143,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <StyledLink external href={BASE_EXCHANGE_URL}>
+        <StyledLink external href={`${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${t(stakingToken.address[56])}`}>
           <Button width="100%" mt="8px" variant="secondary">
             {t('Get')} {stakingToken.symbol}
           </Button>

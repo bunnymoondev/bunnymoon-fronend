@@ -22,6 +22,7 @@ const StyledCardHeader: React.FC<{
   const background = isCakePool ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
+    /**
     if (isAutoVault) {
       // vault
       return `${t('Auto')}`
@@ -30,17 +31,20 @@ const StyledCardHeader: React.FC<{
       // manual cake
       return `${t('Manual')}`
     }
+    */
     // all other pools
     return `${t('Earn')}`
   }
 
   const getSubHeading = () => {
+    /**
     if (isAutoVault) {
       return `${t('Automatic restaking')}`
     }
     if (isCakePool) {
       return `${t('Earn BUNNYMOON, stake BUNNYMOON')}`
     }
+    */
     return `${t('Stake')} ${stakingTokenSymbol}`
   }
 

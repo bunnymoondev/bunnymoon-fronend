@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance, useTotalBurn } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getCakeAddress, getRocketAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import CardValue from './CardValue'
 
@@ -28,6 +28,7 @@ const CakeStats = () => {
   const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()),9)
   const bunnymoonSupply = totalSupply ? getBalanceNumber(totalSupply,9) - burnedBalance : 0
   const bunnyBurnSupply = totalBurn ? getBalanceNumber(totalBurn,9) : 0
+  const burnedBalanceRocket = getBalanceNumber(useBurnedBalance(getRocketAddress()),18)
 
   return (
     <StyledCakeStats>
@@ -54,6 +55,19 @@ const CakeStats = () => {
         <Row>
           <Text fontSize="14px">{t('New BUNNYMOON/block')}</Text>
           <CardValue fontSize="14px" decimals={0} value={100} fontfamily="Roboto Mono" />
+        </Row>
+      </CardBody>
+      <CardBody>
+        <Heading size="xl" mb="24px">
+          {t('ROCKET Stats')}
+        </Heading>
+        <Row>
+          <Text fontSize="14px">{t('Total Supply')}</Text>
+          <CardValue fontSize="14px" decimals={0} value={10000000} fontfamily="Roboto Mono" />
+        </Row>
+        <Row>
+          <Text fontSize="14px">{t('Total Burned')}</Text>
+          <CardValue fontSize="14px" decimals={0} value={burnedBalanceRocket} fontfamily="Roboto Mono" />
         </Row>
       </CardBody>
     </StyledCakeStats>

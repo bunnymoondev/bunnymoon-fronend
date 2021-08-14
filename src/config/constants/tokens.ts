@@ -12,6 +12,15 @@ const tokens = {
     decimals: 9,
     projectLink: 'https://www.bunnymoon.info/',
   },
+  rocket: {
+    symbol: 'ROCKET',
+    address: {
+      56: '0xDB9c74BafAF88d477eA5304136049eaef763813B',
+      97: '',
+    },
+    decimals: 9,
+    projectLink: 'https://www.bunnymoon.info/',
+  },
   btcb: {
     symbol: 'BTCB',
     address: {
@@ -58,6 +67,47 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
   },
+
+  banana: {
+    symbol: 'BANANA',
+    address: {
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://apeswap.finance/',
+  },
+
+  usdt: {
+    symbol: 'USDT',
+    address: {
+      56: '0x55d398326f99059fF775485246999027B3197955',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://tether.to/',
+  },
+
+  tusd: {
+    symbol: 'TUSD',
+    address: {
+      56: '0x14016e85a25aeb13065688cafb43044c2ef86784',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://trueusd.com/',
+  },
+
+  usdc: {
+    symbol: 'USDC',
+    address: {
+      56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://www.centre.io/',
+  },
+
 }
 
 export default tokens

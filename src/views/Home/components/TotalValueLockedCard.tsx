@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading, Skeleton, Text } from '@bunnymoon-libs/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
+import { useFetchPriceList } from 'state/hooks'
 
 const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
@@ -11,6 +12,7 @@ const StyledTotalValueLockedCard = styled(Card)`
 `
 
 const TotalValueLockedCard = () => {
+  useFetchPriceList()
   const { t } = useTranslation()
   const data = useGetStats()
   const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null

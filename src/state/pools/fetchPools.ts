@@ -45,17 +45,17 @@ export const fetchPools = async () => {
       params: [poolConfig.sousId],
     }
   })
-  const poolsInfo = await multicall(masterchefABI, calls)
+  // const poolsInfo = await multicall(masterchefABI, calls)
   return nonBnbPools.map((p, index) => {
-    const info = poolsInfo[index]
+    // const info = poolsInfo[index]
 
 
-    const harvestInterval = new BigNumber(info.harvestInterval._hex)
-    const depositFeeBP = new BigNumber(info.depositFeeBP)
+    // const harvestInterval = new BigNumber(info.harvestInterval._hex)
+    // const depositFeeBP = new BigNumber(info.depositFeeBP)
     return {
       sousId: p.sousId,
-      depositFeeBP: depositFeeBP.div(100).toString(),
-      harvestInterval: harvestInterval.div(60).div(60).toString(),
+      // depositFeeBP: depositFeeBP.div(100).toString(),
+      // harvestInterval: harvestInterval.div(60).div(60).toString(),
     }
   })
 }
@@ -66,9 +66,8 @@ export const fetchPoolsTotalStaking = async () => {
 
   const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
     return {
-      address: getAddress(poolConfig.stakingToken.address),
-      name: 'balanceOf',
-      params: [getAddress(poolConfig.contractAddress)],
+      address: getAddress(poolConfig.contractAddress),
+      name: 'totalStaked',
     }
   })
 
@@ -80,7 +79,7 @@ export const fetchPoolsTotalStaking = async () => {
     }
   })
 
-  const nonBnbPoolsTotalStaked = await multicall(cakeABI, callsNonBnbPools)
+  const nonBnbPoolsTotalStaked = await multicall(sousChefABI, callsNonBnbPools)
   const bnbPoolsTotalStaked = await multicall(wbnbABI, callsBnbPools)
 
   return [
