@@ -23,6 +23,16 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.busd,
   },
   {
+    pid: 8,
+    lpSymbol: 'ROCKET-BNB LP',
+    lpAddresses: {
+      97: '',
+      56: '0x9EB140651368Ea03BEA1b69069De71b691EB26bf',
+    },
+    token: tokens.rocket,
+    quoteToken: tokens.wbnb,
+  },
+  {
     pid: 3,
     lpSymbol: 'CAKE-BNB LP',
     lpAddresses: {
