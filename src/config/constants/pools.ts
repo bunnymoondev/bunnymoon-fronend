@@ -18,6 +18,21 @@ const pools: PoolConfig[] = [
   },
 
   {
+    sousId: 14,
+    stakingToken: tokens.rocket,
+    earningToken: tokens.wbnb,
+    contractAddress: {
+       97: '',
+       56: '0x2d6039E3a4A7edC0BCAa5f2Fd42118264b022666',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '0.000001',
+    sortOrder: 2,
+    isFinished: false,
+  },
+  
+  {
     sousId: 8,
     stakingToken: tokens.bunnymoon,
     earningToken: tokens.rocket,
@@ -28,7 +43,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     harvest: true,
     tokenPerBlock: '0.3',
-    sortOrder: 2,
+    sortOrder: 3,
     isFinished: false,
   },
   
