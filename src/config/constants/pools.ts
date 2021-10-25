@@ -33,6 +33,36 @@ const pools: PoolConfig[] = [
   },
   
   {
+    sousId: 15,
+    stakingToken: tokens.busd,
+    earningToken: tokens.rocket,
+    contractAddress: {
+       97: '',
+       56: '0xC4A2cD1c543E67D781f27434D45a75cC929d5130',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '0.1',
+    sortOrder: 2,
+    isFinished: false,
+  },
+  
+  {
+    sousId: 16,
+    stakingToken: tokens.usdt,
+    earningToken: tokens.rocket,
+    contractAddress: {
+       97: '',
+       56: '0xE58567b75FA0163B22b4DdbFd4e0a132fcc1a844',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '0.1',
+    sortOrder: 2,
+    isFinished: false,
+  },
+  
+  {
     sousId: 8,
     stakingToken: tokens.bunnymoon,
     earningToken: tokens.rocket,
